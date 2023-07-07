@@ -56,19 +56,19 @@ document.addEventListener('keydown', function(event) {
       break;
   }
 });*/
-const OptionsProvided = document.querySelectorAll('#options li');
-let SelectedOptionIndex = 0;
+let OptionsProvided = document.querySelectorAll('#options li');
+let SelectedOptionValue = 0;
 let isMatrixSelected = false;
 
-function SelectOption(optionIndex) {
+function SelectedOption(GivenOptionValue) {
   OptionsProvided.forEach(option => option.classList.remove('active'));
-  SelectedOptionIndex = optionIndex;
-  OptionsProvided[SelectedOptionIndex].classList.add('active');
+  SelectedOptionValue = GivenOptionValue;
+  OptionsProvided[SelectedOptionValue].classList.add('active');
 }
 
 function UnselectOption() {
   OptionsProvided.forEach(option => option.classList.remove('active'));
-  SelectedOptionIndex = -1;
+  SelectedOptionValue = -1;
   isMatrixSelected = false;
 }
 
@@ -85,30 +85,38 @@ function GoBackToOriginalState() {
     '<li>Red</li>' +
     '</ui>';
 
-  SelectedOptionIndex = 0;
-  SelectOption(SelectedOptionIndex);
-  isMatrixSelected = false;
+  OptionsProvided = document.querySelectorAll('#options li');
+  SelectedOptionValue = 0;
+  SelectedOption(SelectedOptionValue);
+
+  if (isMatrixSelected) {
+    isMatrixSelected = false;
+    UnselectOption();
+  }
+
+  document.removeEventListener('keydown', handleNavigation);
+  document.addEventListener('keydown', handleNavigation);
 }
 
 function handleNavigation(event) {
   switch (event.key) {
     case 'ArrowUp':
-      if (SelectedOptionIndex === -1) {
-        SelectOption(OptionsProvided.length - 1); // Wrap around to the last option
+      if (SelectedOptionValue === -1) {
+        SelectedOption(OptionsProvided.length - 1); // Wrap around to the last option
       } else {
-        SelectOption((SelectedOptionIndex - 1 + OptionsProvided.length) % OptionsProvided.length);
+        SelectedOption((SelectedOptionValue - 1 + OptionsProvided.length) % OptionsProvided.length);
       }
       break;
     case 'ArrowDown':
-      SelectOption((SelectedOptionIndex + 1) % OptionsProvided.length);
+      SelectedOption((SelectedOptionValue + 1) % OptionsProvided.length);
       break;
     case 'Enter':
-      if (SelectedOptionIndex !== -1) {
-        if (SelectedOptionIndex === 0) {
+      if (SelectedOptionValue !== -1) {
+        if (SelectedOptionValue === 0) {
           isMatrixSelected = true;
           GoToBlankPage();
         } else {
-          const selectedOptionText = OptionsProvided[SelectedOptionIndex].textContent;
+          const selectedOptionText = OptionsProvided[SelectedOptionValue].textContent;
           alert(`You selected: ${selectedOptionText}`);
         }
       }
@@ -125,4 +133,4 @@ function handleNavigation(event) {
 
 document.addEventListener('keydown', handleNavigation);
 
-SelectOption(SelectedOptionIndex); // Select the initial option
+SelectedOption(SelectedOptionValue); // Select the initial option
