@@ -1,14 +1,14 @@
 @font-face {
     font-family: 'Ethnocentricrg';
-    src: url("../fonts/ethnocentricrg.otf");
+    src: url("./fonts/ethnocentricrg.otf");
 }
 @font-face {
     font-family: 'Play';
-    src: url("../fonts/Play/Play-Regular.ttf");
+    src: url("./fonts/Play/Play-Regular.ttf");
 }
 @font-face {
     font-family: 'Noto Sans';
-    src: url("../fonts/NotoSans-Regular.ttf");
+    src: url("./fonts/NotoSans-Regular.ttf");
 }
 
 :root {
