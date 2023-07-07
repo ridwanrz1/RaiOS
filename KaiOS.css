@@ -1,0 +1,154 @@
+@font-face {
+    font-family: 'Ethnocentricrg';
+    src: url("/fonts/ethnocentricrg.otf");
+}
+@font-face {
+    font-family: 'Play';
+    src: url("/fonts/Play/Play-Regular.ttf");
+}
+@font-face {
+    font-family: 'Noto Sans';
+    src: url("/fonts/NotoSans-Regular.ttf");
+}
+
+:root {
+    --theme-color: #202c3c;
+    --toast-background: #ff3e3e;
+    --toast-color: #ffffff;
+}
+
+.kaios-root {
+    margin: 0;
+    padding: 0;
+}
+
+.kaios-status-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 30px;
+    background: var(--theme-color);
+}
+
+.kaios-header-bar {
+    position: fixed;
+    top: 28px;
+    width: 100%;
+    height: 28px;
+    line-height: 28px;
+    background: #415166;
+    color: #ffffff;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 300;
+    font-family: 'Ethnocentricrg', Courier, monospace;
+}
+
+.kaios-content {
+    position: fixed;
+    top: 54px;
+    bottom: 30px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.goodies {
+    font-family: 'Play', Courier, monospace;
+    text-align: center;
+}
+
+.kaios-softkeys-bar 
+{
+    box-sizing: border-box;
+    position: fixed;
+    width: 100%;
+    height: 30px;
+    bottom: 0px; 
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+}
+
+.kaios-softkeys-bar * 
+{
+    width: 33.3333333333%;
+    text-overflow: ellipsis;
+}
+
+.kaios-softkeys-bar-light
+{
+    background: #202c3c;
+    color: #c8e0ff;
+}
+
+.kaios-softkeys-key-center 
+{
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    font-family: 'Noto Sans';
+}
+
+.kaios-softkeys-key-left 
+{
+    font-size: 13px;
+    font-weight: bold;
+    text-align: left;
+    font-family: 'Noto Sans';
+}
+  
+.kaios-softkeys-key-right 
+{
+    font-size: 13px;
+    font-weight: bold;
+    text-align: right;
+    font-family: 'Noto Sans';
+}
+
+/* Real game begins here */
+#options {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #f47676;
+    text-decoration: unset;
+    margin: 0;
+    font-size: 20px;
+    padding: 0px 1rem;
+    height: 72px;
+    font-weight: 900;
+    font-family: 'Play';
+    width: 100%;
+}
+
+li.active {
+    background-color: #22569a;
+    color: #c8e0ff;
+}
+
+
+.toast {
+    height: 3.6rem;
+    width: 100%;
+    line-height: 3.6rem;
+    background: var(--toast-background);
+    color: var(--toast-color);
+    text-align: center;
+    vertical-align: middle;
+    position: absolute;
+    transform: translateY(-3.6rem);
+    transition: transform 1s ease-in-out;
+    z-index: 1;
+    top: 0;
+  }
+  
+  .toast--on {
+    transform: translateY(0rem);
+  }
+
+  
