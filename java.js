@@ -98,6 +98,16 @@ function GoBackToOriginalState() {
   document.addEventListener('keydown', handleNavigation);
 }
 
+function showCustomAlert(message) {
+  const toastElement = document.getElementById('customAlert');
+  toastElement.textContent = message;
+  toastElement.classList.add('toast--on');
+
+  setTimeout(function() {
+    toastElement.classList.remove('toast--on');
+  }, 3000); // Adjust the timeout value (in milliseconds) as needed
+}
+
 function handleNavigation(event) {
   switch (event.key) {
     case 'ArrowUp':
@@ -117,7 +127,7 @@ function handleNavigation(event) {
           GoToBlankPage();
         } else {
           const selectedOptionText = OptionsProvided[SelectedOptionValue].textContent;
-          alert(`You selected: ${selectedOptionText}`);
+          showCustomAlert(`You selected: ${selectedOptionText}`);
         }
       }
       break;
